@@ -14,7 +14,33 @@ Write 3 different ways of safely unwrapping and printing the value of `userName`
 - Method two: Optional binding
 
 - Method three: Nil coalescing
+```
+var userName: String? = "john"
+var middleName = userName
+print(middleName!)
 
+var optionalInt: Int? = 33
+print(optionalInt! + 4)
+
+
+
+var userName: String? = "john"
+
+if let name = userName {
+print("username: \(name)")
+}
+else {
+print("no name")
+}
+
+
+
+var userName: String? = nil
+
+var unwrappedUserName = userName ?? "john"
+
+print(unwrappedUserName)
+```
 
 ## Question 2
 
@@ -22,6 +48,15 @@ Given optional string `backgroundColor`, write code that safely unwraps and prin
 
 `var backgroundColor: String?`
 
+```
+var backgroundColor: String?
+
+if let unwrappedBackgroundColor = backgroundColor {
+print(unwrappedBackgroundColor)
+} else {
+backgroundColor = "green"
+}
+```
 
 ## Question 3
 
@@ -31,7 +66,18 @@ Given an optional width and an optional height of a rectangle, write code that c
 var width: Double?
 var height: Double?
 ```
+```
+var width: Double?
+var height: Double?
 
+if let unwrappedWidth = width {
+if let unwrappedHeight = height {
+print(unwrappedWidth * unwrappedHeight)
+}
+} else {
+print("error")
+}
+```
 
 ## Question 4
 
@@ -43,6 +89,36 @@ var age: Int?
 var height: Double?
 ```
 
+```
+var name: String?
+var age: Int?
+var height: Double?
+
+if let unwrappedName = name {
+if let unwrappedAge = age {
+if let unwrappedHeight = height {
+print("\(unwrappedName), \(unwrappedAge), \(unwrappedHeight)")
+} else {
+print("error")
+}
+} else {
+print("error")
+}
+} else {
+print("error")
+}
+```
+```
+var name: String?
+var age: Int?
+var height: Double?
+
+if let unwrappedName = name, let unwrappedAge = age, let unwrappedHeight = height {
+print("\(unwrappedName), \(unwrappedAge), \(unwrappedHeight)")
+} else {
+print("error")
+}
+```
 
 ## Question 5
 
@@ -53,14 +129,33 @@ var firstName: String = "Johnny"
 var middleName: String?
 var lastName: String = "Stone"
 ```
+```
+var firstName: String = "Johnny"
+var middleName: String?
+var lastName: String = "Stone"
 
+
+var fullName = ("\(firstName), \(middleName), \(lastName)")
+
+print(fullName)
+```
 
 ## Question 6
 
 Write code that adds 15 to `myIntString`, then prints the sum. Use the `Int()` constructor which returns an optional Int `(Int?)`.
 
 `let myIntString = "35"`
+```
+let myIntString = "35"
 
+Int(myIntString)
+
+//print(Int(myIntString))
+
+if let unwrappedInt = Int(myIntString) {
+print(unwrappedInt + 15)
+}
+```
 
 ## Question 7
 
@@ -73,7 +168,31 @@ var testCaseOne = (4, nil, 7)
 var testCaseTwo = (nil, nil, 9)
 var testCaseThree = (5, 10, 24)
 ```
+```
+var scores: (Int?, Int?, Int?)?
 
+var testCaseOne:(Int?, Int?, Int?)? = (4, nil, 7)
+var testCaseTwo:(Int?, Int?, Int?)? = (nil, nil, 9)
+var testCaseThree:(Int?, Int?, Int?)? = (5, 10, 24)
+
+let testCases = [testCaseOne, testCaseTwo, testCaseThree]
+
+for tCase in testCases {
+var sum = 0
+if let currentCase = tCase {
+if let tupleValue = currentCase.0 {
+sum += tupleValue
+}
+if let tupleValue = currentCase.1 {
+sum += tupleValue
+}
+if let tupleValue = currentCase.2 {
+sum += tupleValue
+}
+}
+print(sum)
+}
+```
 
 ## Question 8
 
@@ -85,7 +204,16 @@ if Bool.random() {
  tuple = (5, 3)
 }
 ```
+```
+var tuple: (Int, Int)?
 
+if Bool.random() {
+tuple = (5, 3)
+}
+if let unwrappedTuple = tuple {
+print(unwrappedTuple)
+}
+```
 
 ## Question 9
 
@@ -96,6 +224,22 @@ let myInt: Int?
 if Bool.random() {
  myInt = 5
 }
+```
+```
+
+var myDouble: Double?
+let doubleTwo: Double = 5
+
+let myInt: Int?
+if Bool.random() {
+myDouble = 5
+}
+if let unwrappedMyInt = myDouble {
+print(unwrappedMyInt * 2)
+} else {
+print("error")
+}
+
 ```
 
 
@@ -111,7 +255,21 @@ if Bool.random() {
  myDouble = 12
 }
 ```
+```
+var myDouble: Double?
+let doubleTwo: Double = 5
 
+if Bool.random() {
+myDouble = 12
+}
+if let myDouble = myDouble {
+print (myDouble * doubleTwo)
+}
+
+else {
+print("error")
+}
+```
 
 ## Question 11
 
